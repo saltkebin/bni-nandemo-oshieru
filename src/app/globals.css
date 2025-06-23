@@ -1,0 +1,37 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    font-family: system-ui, sans-serif;
+  }
+  
+  body {
+    @apply bg-gray-50 text-gray-900;
+  }
+}
+
+@layer components {
+  .chat-container {
+    @apply min-h-screen flex flex-col;
+  }
+  
+  .message-bubble {
+    @apply px-4 py-2 rounded-lg max-w-xs lg:max-w-md;
+  }
+  
+  .user-message {
+    @apply bg-green-500 text-white ml-auto;
+  }
+  
+  .assistant-message {
+    @apply bg-white text-gray-800 border border-gray-200;
+  }
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+}

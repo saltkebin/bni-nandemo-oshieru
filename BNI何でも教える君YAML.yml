@@ -1,0 +1,1814 @@
+app:
+  description: BNIについてデータベースから知識を引っ張ってきてくれます。
+  icon: 🤖
+  icon_background: '#FFEAD5'
+  mode: advanced-chat
+  name: BNI何でも教える君
+  use_icon_as_answer_icon: false
+dependencies:
+- current_identifier: null
+  type: marketplace
+  value:
+    marketplace_plugin_unique_identifier: langgenius/cohere:0.0.8@3dcfb5aa3cf8187b5aa1db48cc3e12326d2211d6e707fbde8031f23cc9eb6315
+- current_identifier: null
+  type: marketplace
+  value:
+    marketplace_plugin_unique_identifier: langgenius/openai:0.0.22@fa668d0ec3b434270453ede311196acaad0531ad9e3d5561cd622e6508cd3254
+- current_identifier: null
+  type: marketplace
+  value:
+    marketplace_plugin_unique_identifier: langgenius/gemini:0.2.1@88c1b2c816ef2ea36fc411b35298a621b3260d34bc08bd9357772092728aadde
+kind: app
+version: 0.3.0
+workflow:
+  conversation_variables:
+  - description: ''
+    id: c2b743a6-7729-4ff9-9cb9-dba090fc91cd
+    name: edu
+    selector:
+    - conversation
+    - edu
+    value: ''
+    value_type: string
+  - description: クイズの内容
+    id: c97be97a-fef2-458b-a7e3-c4f117098104
+    name: quiz
+    selector:
+    - conversation
+    - quiz
+    value: ''
+    value_type: string
+  environment_variables: []
+  features:
+    file_upload:
+      allowed_file_extensions:
+      - .JPG
+      - .JPEG
+      - .PNG
+      - .GIF
+      - .WEBP
+      - .SVG
+      allowed_file_types:
+      - image
+      allowed_file_upload_methods:
+      - local_file
+      - remote_url
+      enabled: false
+      fileUploadConfig:
+        audio_file_size_limit: 50
+        batch_count_limit: 5
+        file_size_limit: 15
+        image_file_size_limit: 10
+        video_file_size_limit: 100
+        workflow_file_upload_limit: 10
+      image:
+        enabled: false
+        number_limits: 3
+        transfer_methods:
+        - local_file
+        - remote_url
+      number_limits: 3
+    opening_statement: 'BNI何でも教える君 ご利用にあたって
+
+      このチャットボットは、BNIメンバーの皆さまが活動を円滑に行えるよう、BNIのルールやカルチャー、用語、役職の理解、行動のヒントなどをサポートする目的で提供しています。
+
+
+      ご利用にあたり、以下の点をご理解の上でご活用ください：
+
+
+      回答はBNIの公式資料や規定に基づいたナレッジをもとにしていますが、最終的な判断や正式な解釈はチャプターディレクターや担当者にご確認ください。
+
+
+      一部の内容は、チャプターごとの運用や地域ディレクターの方針によって異なる場合があります。
+
+
+      本チャットボットは、メンバーの理解と行動を支援するツールであり、公式な通達や規定変更などを通知するものではありません。
+
+
+      質問内容によっては、正確な回答ができない場合があります。
+
+
+      機密性の高い内容や個別の相談には、本チャットボットでは対応できません。
+
+
+      常に「Givers Gain（与える者は与えられる）」の理念を尊重し、メンバー間の信頼関係を深めるための一助としてご活用いただければ幸いです。
+
+
+      それでは、「はじめる」をタップしてください。'
+    retriever_resource:
+      enabled: true
+    sensitive_word_avoidance:
+      enabled: false
+    speech_to_text:
+      enabled: false
+    suggested_questions:
+    - はじめる
+    suggested_questions_after_answer:
+      enabled: false
+    text_to_speech:
+      enabled: false
+      language: ''
+      voice: ''
+  graph:
+    edges:
+    - data:
+        isInIteration: false
+        sourceType: knowledge-retrieval
+        targetType: llm
+      id: 1730357591305-source-1730357621668-target
+      source: '1730357591305'
+      sourceHandle: source
+      target: '1730357621668'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        sourceType: llm
+        targetType: answer
+      id: 1730357621668-source-1730357644570-target
+      source: '1730357621668'
+      sourceHandle: source
+      target: '1730357644570'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        sourceType: if-else
+        targetType: answer
+      id: 1734373581593-true-1734373635254-target
+      source: '1734373581593'
+      sourceHandle: 'true'
+      target: '1734373635254'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        sourceType: if-else
+        targetType: knowledge-retrieval
+      id: 1734373581593-9e906686-d7c3-4a07-ad75-26451e9b5501-1730357591305-target
+      source: '1734373581593'
+      sourceHandle: 9e906686-d7c3-4a07-ad75-26451e9b5501
+      target: '1730357591305'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        sourceType: if-else
+        targetType: answer
+      id: 1734373581593-6f9139fc-848e-452b-bfc7-1ef0617d8517-1734373880147-target
+      source: '1734373581593'
+      sourceHandle: 6f9139fc-848e-452b-bfc7-1ef0617d8517
+      target: '1734373880147'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        sourceType: if-else
+        targetType: knowledge-retrieval
+      id: 1734373581593-c543670d-4437-4509-a131-1a3a7a716fde-1734374094981-target
+      source: '1734373581593'
+      sourceHandle: c543670d-4437-4509-a131-1a3a7a716fde
+      target: '1734374094981'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        sourceType: knowledge-retrieval
+        targetType: llm
+      id: 1734374094981-source-1734374121726-target
+      source: '1734374094981'
+      sourceHandle: source
+      target: '1734374121726'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        sourceType: llm
+        targetType: answer
+      id: 1734374121726-source-1734374210566-target
+      source: '1734374121726'
+      sourceHandle: source
+      target: '1734374210566'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        sourceType: if-else
+        targetType: knowledge-retrieval
+      id: 1734373581593-dab3eddf-b0e3-4911-8d53-716ae29cd367-1739044686598-target
+      source: '1734373581593'
+      sourceHandle: dab3eddf-b0e3-4911-8d53-716ae29cd367
+      target: '1739044686598'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        sourceType: llm
+        targetType: answer
+      id: 1739044545056-source-1739044751579-target
+      source: '1739044545056'
+      sourceHandle: source
+      target: '1739044751579'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        sourceType: knowledge-retrieval
+        targetType: if-else
+      id: 1739044686598-source-1739046117016-target
+      source: '1739044686598'
+      sourceHandle: source
+      target: '1739046117016'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        sourceType: if-else
+        targetType: llm
+      id: 1739046117016-bb274817-caf9-4dab-ad6b-53171aa7c7f2-1739046189407-target
+      source: '1739046117016'
+      sourceHandle: bb274817-caf9-4dab-ad6b-53171aa7c7f2
+      target: '1739046189407'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        sourceType: llm
+        targetType: answer
+      id: 1739046189407-source-1739046279529-target
+      source: '1739046189407'
+      sourceHandle: source
+      target: '1739046279529'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        sourceType: if-else
+        targetType: llm
+      id: 1739046117016-true-1739046660735-target
+      source: '1739046117016'
+      sourceHandle: 'true'
+      target: '1739046660735'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        sourceType: llm
+        targetType: assigner
+      id: 1739046660735-source-1739047125164-target
+      source: '1739046660735'
+      sourceHandle: source
+      target: '1739047125164'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        sourceType: assigner
+        targetType: llm
+      id: 1739047125164-source-1739044545056-target
+      source: '1739047125164'
+      sourceHandle: source
+      target: '1739044545056'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        sourceType: if-else
+        targetType: knowledge-retrieval
+      id: 1734373581593-2f87b79b-66d9-4ee4-8ee6-a63820eb2930-1739142332811-target
+      source: '1734373581593'
+      sourceHandle: 2f87b79b-66d9-4ee4-8ee6-a63820eb2930
+      target: '1739142332811'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        sourceType: knowledge-retrieval
+        targetType: if-else
+      id: 1739142332811-source-1739142406296-target
+      source: '1739142332811'
+      sourceHandle: source
+      target: '1739142406296'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        sourceType: if-else
+        targetType: llm
+      id: 1739142406296-true-1739142454365-target
+      source: '1739142406296'
+      sourceHandle: 'true'
+      target: '1739142454365'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        sourceType: llm
+        targetType: answer
+      id: 1739142454365-source-1739142720101-target
+      source: '1739142454365'
+      sourceHandle: source
+      target: '1739142720101'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        sourceType: if-else
+        targetType: answer
+      id: 1739142406296-false-1739142749096-target
+      source: '1739142406296'
+      sourceHandle: 'false'
+      target: '1739142749096'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        sourceType: if-else
+        targetType: answer
+      id: 1734373581593-af7266b5-d616-42cd-8ac4-4df2f29c7b69-1744265784809-target
+      source: '1734373581593'
+      sourceHandle: af7266b5-d616-42cd-8ac4-4df2f29c7b69
+      target: '1744265784809'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        sourceType: if-else
+        targetType: knowledge-retrieval
+      id: 1734373581593-eeb6a9d7-d3ed-46c4-bfa4-e8612a2bfe6b-1744266029077-target
+      source: '1734373581593'
+      sourceHandle: eeb6a9d7-d3ed-46c4-bfa4-e8612a2bfe6b
+      target: '1744266029077'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        sourceType: knowledge-retrieval
+        targetType: llm
+      id: 1744266029077-source-1744266011933-target
+      source: '1744266029077'
+      sourceHandle: source
+      target: '1744266011933'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        sourceType: llm
+        targetType: template-transform
+      id: 1744266011933-source-1744266235346-target
+      source: '1744266011933'
+      sourceHandle: source
+      target: '1744266235346'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        sourceType: template-transform
+        targetType: assigner
+      id: 1744266235346-source-1744266254875-target
+      source: '1744266235346'
+      sourceHandle: source
+      target: '1744266254875'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        sourceType: assigner
+        targetType: answer
+      id: 1744266254875-source-1744266102534-target
+      source: '1744266254875'
+      sourceHandle: source
+      target: '1744266102534'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        sourceType: if-else
+        targetType: llm
+      id: 1734373581593-01fa8527-df15-4076-9bff-f2c851d3dc4b-1744266324493-target
+      source: '1734373581593'
+      sourceHandle: 01fa8527-df15-4076-9bff-f2c851d3dc4b
+      target: '1744266324493'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        sourceType: llm
+        targetType: answer
+      id: 1744266324493-source-1744266437218-target
+      source: '1744266324493'
+      sourceHandle: source
+      target: '1744266437218'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        isInLoop: false
+        sourceType: start
+        targetType: if-else
+      id: 1724505397538-source-1744592926447-target
+      source: '1724505397538'
+      sourceHandle: source
+      target: '1744592926447'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInLoop: false
+        sourceType: if-else
+        targetType: if-else
+      id: 1744592926447-false-1734373581593-target
+      source: '1744592926447'
+      sourceHandle: 'false'
+      target: '1734373581593'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        isInLoop: false
+        sourceType: if-else
+        targetType: answer
+      id: 1744592926447-true-1744592938926-target
+      source: '1744592926447'
+      sourceHandle: 'true'
+      target: '1744592938926'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    nodes:
+    - data:
+        desc: ''
+        selected: true
+        title: 開始
+        type: start
+        variables:
+        - label: 選んでください
+          max_length: 48
+          options:
+          - BNI全般
+          - SILVISチャプター
+          - エデュケーション何でも教える君
+          required: true
+          type: select
+          variable: select
+      height: 89
+      id: '1724505397538'
+      position:
+        x: -365.14723546538414
+        y: 299.0148154885095
+      positionAbsolute:
+        x: -365.14723546538414
+        y: 299.0148154885095
+      selected: true
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    - data:
+        dataset_ids:
+        - 36wzJZ3KefCJgzjpCxFGd1kbHaQ2x74VEKkTqHL2IvTCmB3z+drNMFazZm9TMD8T
+        - Qz18BVYYZo8n6n/hGjD164w5ulxXDipB0N48v/7OQkhZMk3FtNEdfEcRrWO33SZn
+        - avjatWNRf5WMyHCKJ0/JbCgcWwUUU/W6H9SFycoqjH8sbZgesglNOpJhKV5LAfmj
+        - u0m0qu990FlmG5rimGoPlo2qT6ilfLT7/OfCmuvd52YES5myoSL4fZIKPeXEzlg8
+        - 6qYzjD7ICG6Jl1bky4OIXLZZHeQvB6+M//lBCJggA4GwGAsk0HA/8f1XsOOY1I/3
+        desc: ''
+        multiple_retrieval_config:
+          reranking_enable: true
+          reranking_mode: reranking_model
+          reranking_model:
+            model: rerank-multilingual-v3.0
+            provider: langgenius/cohere/cohere
+          score_threshold: null
+          top_k: 4
+        query_variable_selector:
+        - '1724505397538'
+        - sys.query
+        retrieval_mode: multiple
+        selected: false
+        title: 知識取得
+        type: knowledge-retrieval
+      height: 175
+      id: '1730357591305'
+      position:
+        x: 934
+        y: 253
+      positionAbsolute:
+        x: 934
+        y: 253
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    - data:
+        context:
+          enabled: true
+          variable_selector:
+          - '1730357591305'
+          - result
+        desc: ''
+        memory:
+          query_prompt_template: '{{#sys.query#}}'
+          role_prefix:
+            assistant: ''
+            user: ''
+          window:
+            enabled: true
+            size: 15
+        model:
+          completion_params: {}
+          mode: chat
+          name: gemini-2.0-flash-001
+          provider: langgenius/gemini/google
+        prompt_template:
+        - id: 56773204-8eb5-4131-9405-c31d4ef9ef80
+          role: system
+          text: "あなたはBNIメンバーをサポートするAIアシスタントです。  \n常に丁寧かつ前向きに、BNIの理念・ルール・カルチャーに基づいたアドバイスを行ってください。\
+            \  \nあなたの役割は、BNIメンバーが信頼関係を築き、リファーラルマーケティングを通じてビジネスを成長させるためのパートナーであることです。\n\
+            \n以下の<context></context>タグ内にあるBNIに関する知識やルールを活用して、質問に答えてください。\n\n<context>\n\
+            {{#context#}}\n</context>\n\n回答を始める前に、ユーザーの質問が以下のどちらに該当するかを判断してください：\n\
+            \n1. **BNIのルールや仕組みについての正確な情報を求めている質問**\n　→ 客観的かつ正確に、ルールや規定に基づいて説明してください。\
+            \  \n　→ 地域やチャプターによって異なる可能性がある場合は、その旨も補足してください。\n\n2. **BNIメンバーとしての行動や判断についてアドバイスを求めている質問**\n\
+            　→ BNIの理念やカルチャーをもとに、前向きで実践的なアドバイスを行ってください。  \n　→ 「Givers Gain（与える者は与えられる）」の精神を軸に、信頼構築につながる具体的な行動提案を心がけてください。\n\
+            \nユーザーへの回答時は以下を厳守してください：\n\n- 回答はすべて日本語で行うこと  \n- コンテキストから得た情報であるというメタ的な表現（例：「提供された情報によると」など）は使わないこと\
+            \  \n- 必要に応じて、わかりやすい例や行動提案を含めること  \n- WEBサイトを参照した場合は、必ずそのURLを記載すること（BNI公式サイト等、信頼できるものを推奨）\
+            \  \n- 回答に迷う場合は、BNIの理念「Givers Gain（与える者は与えられる）」と信頼構築を優先する判断をすること\n\nあなたの最終的な目的は、BNIメンバーが**自信を持って行動し、仲間との信頼を深め、成果を上げられるよう導くこと**です。\n"
+        - id: c34d50d6-5d48-4fd8-8772-8365de88acd5
+          role: user
+          text: '以下の質問をコンテキストに沿って答えて
+
+
+            #質問
+
+            {{#sys.query#}}'
+        selected: false
+        title: LLM
+        type: llm
+        variables: []
+        vision:
+          enabled: false
+      height: 89
+      id: '1730357621668'
+      position:
+        x: 1238
+        y: 253
+      positionAbsolute:
+        x: 1238
+        y: 253
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    - data:
+        answer: '{{#1730357621668.text#}}'
+        desc: ''
+        selected: false
+        title: 回答
+        type: answer
+        variables: []
+      height: 104
+      id: '1730357644570'
+      position:
+        x: 1542
+        y: 253
+      positionAbsolute:
+        x: 1542
+        y: 253
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    - data:
+        cases:
+        - case_id: 'true'
+          conditions:
+          - comparison_operator: is
+            id: 3cc005b7-f911-4ce8-ad03-cf296ad239f5
+            value: BNI全般
+            varType: string
+            variable_selector:
+            - '1724505397538'
+            - select
+          - comparison_operator: is
+            id: fdec89d3-c7b2-4a23-85a3-faabaaa147f7
+            value: はじめる
+            varType: string
+            variable_selector:
+            - sys
+            - query
+          id: 'true'
+          logical_operator: and
+        - case_id: 9e906686-d7c3-4a07-ad75-26451e9b5501
+          conditions:
+          - comparison_operator: is
+            id: d577a432-5336-4bde-aa0c-f05a23682bb0
+            value: BNI全般
+            varType: string
+            variable_selector:
+            - '1724505397538'
+            - select
+          - comparison_operator: is not
+            id: 2752ec35-5fab-4394-be32-232a2419fcf1
+            value: はじめる
+            varType: string
+            variable_selector:
+            - sys
+            - query
+          id: 9e906686-d7c3-4a07-ad75-26451e9b5501
+          logical_operator: and
+        - case_id: 6f9139fc-848e-452b-bfc7-1ef0617d8517
+          conditions:
+          - comparison_operator: is
+            id: d6112979-7ea0-41b6-a629-4af0e045f126
+            value: SILVISチャプター
+            varType: string
+            variable_selector:
+            - '1724505397538'
+            - select
+          - comparison_operator: is
+            id: 7ad38a1f-babf-450c-91a1-ceb124adba96
+            value: はじめる
+            varType: string
+            variable_selector:
+            - sys
+            - query
+          id: 6f9139fc-848e-452b-bfc7-1ef0617d8517
+          logical_operator: and
+        - case_id: c543670d-4437-4509-a131-1a3a7a716fde
+          conditions:
+          - comparison_operator: is
+            id: 07683fd6-a6b0-4b4c-a284-e5e5cf746ade
+            value: SILVISチャプター
+            varType: string
+            variable_selector:
+            - '1724505397538'
+            - select
+          - comparison_operator: is not
+            id: 6d2b2c07-9271-4532-9f3d-51d44ecb5bd4
+            value: はじめる
+            varType: string
+            variable_selector:
+            - sys
+            - query
+          id: c543670d-4437-4509-a131-1a3a7a716fde
+          logical_operator: and
+        - case_id: dab3eddf-b0e3-4911-8d53-716ae29cd367
+          conditions:
+          - comparison_operator: is
+            id: e20a160e-b859-40e7-85d2-9eaf38ec7d30
+            value: BNIクイズ
+            varType: string
+            variable_selector:
+            - '1724505397538'
+            - select
+          id: dab3eddf-b0e3-4911-8d53-716ae29cd367
+          logical_operator: and
+        - case_id: 2f87b79b-66d9-4ee4-8ee6-a63820eb2930
+          conditions:
+          - comparison_operator: is
+            id: 209c2561-1e5f-4554-8747-f139d2511847
+            value: SILVISルールお勉強
+            varType: string
+            variable_selector:
+            - '1724505397538'
+            - select
+          id: 2f87b79b-66d9-4ee4-8ee6-a63820eb2930
+          logical_operator: and
+        - case_id: af7266b5-d616-42cd-8ac4-4df2f29c7b69
+          conditions:
+          - comparison_operator: is
+            id: f1ce59ab-0188-4e89-9a08-13bcda0cf56a
+            value: エデュケーション何でも教える君
+            varType: string
+            variable_selector:
+            - '1724505397538'
+            - select
+          - comparison_operator: is
+            id: 74a0f392-f670-45c5-9157-167fb1810cf3
+            value: はじめる
+            varType: string
+            variable_selector:
+            - sys
+            - query
+          id: af7266b5-d616-42cd-8ac4-4df2f29c7b69
+          logical_operator: and
+        - case_id: eeb6a9d7-d3ed-46c4-bfa4-e8612a2bfe6b
+          conditions:
+          - comparison_operator: is
+            id: d829722e-68e9-49d2-94ef-52a0faec94d7
+            value: エデュケーション何でも教える君
+            varType: string
+            variable_selector:
+            - '1724505397538'
+            - select
+          - comparison_operator: is not
+            id: 02248ab8-fa09-46e1-84b4-b4b800cafae8
+            value: はじめる
+            varType: string
+            variable_selector:
+            - sys
+            - query
+          - comparison_operator: empty
+            id: f32b1ff0-7311-4e1f-983a-0fdf61f2e208
+            value: ''
+            varType: string
+            variable_selector:
+            - conversation
+            - edu
+          id: eeb6a9d7-d3ed-46c4-bfa4-e8612a2bfe6b
+          logical_operator: and
+        - case_id: 01fa8527-df15-4076-9bff-f2c851d3dc4b
+          conditions:
+          - comparison_operator: is
+            id: ca4645c4-831d-49d2-a262-2d07f92a76bc
+            value: エデュケーション何でも教える君
+            varType: string
+            variable_selector:
+            - '1724505397538'
+            - select
+          - comparison_operator: not empty
+            id: f2e347da-093e-489a-bff5-465cc98aa5fd
+            value: ''
+            varType: string
+            variable_selector:
+            - conversation
+            - edu
+          id: 01fa8527-df15-4076-9bff-f2c851d3dc4b
+          logical_operator: and
+        desc: ''
+        selected: false
+        title: IF/ELSE
+        type: if-else
+      height: 717
+      id: '1734373581593'
+      position:
+        x: 514.1387715477092
+        y: 299.0148154885095
+      positionAbsolute:
+        x: 514.1387715477092
+        y: 299.0148154885095
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    - data:
+        answer: 'チャプター運営マニュアルなどBNIに関する資料を読み込ませています。
+
+          規程に関することや各役職の役割など聞いてみたいことを↓のフォームから入力してください。
+
+
+          ※不具合により先ほど選んでいただいた選択が外れている可能性があります。
+
+          その場合は↑にある「チャット設定」の「編集」から再度"BNI全般"を選択してください。'
+        desc: ''
+        selected: false
+        title: 回答 2
+        type: answer
+        variables: []
+      height: 213
+      id: '1734373635254'
+      position:
+        x: 961.6292295751805
+        y: 67.69709438411073
+      positionAbsolute:
+        x: 961.6292295751805
+        y: 67.69709438411073
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    - data:
+        answer: 'こちらはSILVISチャプター特有のルールなどについてお答えできます。
+
+          定例会の細かな決まりやリファーラルなどについて↓のフォームより質問してください。
+
+
+          ※不具合により先ほど選んでいただいた選択が外れている可能性があります。
+
+          その場合は↑にある「チャット設定」の「編集」から再度"SILVISルール"を選択してください。'
+        desc: ''
+        selected: false
+        title: 回答 3
+        type: answer
+        variables: []
+      height: 213
+      id: '1734373880147'
+      position:
+        x: 934
+        y: 439
+      positionAbsolute:
+        x: 934
+        y: 439
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    - data:
+        dataset_ids:
+        - NzJiFyhHM/UxY6VC2LwUvfmPUqF8HTi+XH/N6q85f3PR6tJuPSLZ5TwsLtP9zI1H
+        desc: ''
+        multiple_retrieval_config:
+          reranking_enable: true
+          reranking_mode: reranking_model
+          reranking_model:
+            model: rerank-multilingual-v3.0
+            provider: langgenius/cohere/cohere
+          top_k: 4
+        query_variable_selector:
+        - '1724505397538'
+        - sys.query
+        retrieval_mode: multiple
+        selected: false
+        title: 知識取得 2
+        type: knowledge-retrieval
+      height: 91
+      id: '1734374094981'
+      position:
+        x: 934
+        y: 625
+      positionAbsolute:
+        x: 934
+        y: 625
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    - data:
+        context:
+          enabled: true
+          variable_selector:
+          - '1734374094981'
+          - result
+        desc: ''
+        memory:
+          query_prompt_template: '{{#sys.query#}}'
+          role_prefix:
+            assistant: ''
+            user: ''
+          window:
+            enabled: true
+            size: 40
+        model:
+          completion_params: {}
+          mode: chat
+          name: gemini-2.0-flash-001
+          provider: langgenius/gemini/google
+        prompt_template:
+        - id: 8142bb3e-a97d-4254-8dc0-8dd310574438
+          role: system
+          text: 'あなたは丁寧に答える人です。
+
+            以下の<context></context> XML tags内にある知識を使ってください
+
+            <context>
+
+            {{#context#}}
+
+            </context>
+
+            ユーザーに答える時:
+
+            コンテキストからの情報から得たという言及は避けてください。
+
+            必ず日本語で答えてください。'
+        - id: 363f52e2-bd4f-4737-9bd2-80096f944919
+          role: user
+          text: '以下の質問をコンテキストに沿って答えて
+
+
+            #質問
+
+            {{#sys.query#}}のルール等について知りたい。
+
+            {{#sys.query#}}'
+        selected: false
+        title: LLM 2
+        type: llm
+        variables: []
+        vision:
+          enabled: false
+      height: 89
+      id: '1734374121726'
+      position:
+        x: 1238
+        y: 625
+      positionAbsolute:
+        x: 1238
+        y: 625
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    - data:
+        answer: '{{#1734374121726.text#}}'
+        desc: ''
+        selected: false
+        title: 回答 4
+        type: answer
+        variables: []
+      height: 104
+      id: '1734374210566'
+      position:
+        x: 1542
+        y: 625
+      positionAbsolute:
+        x: 1542
+        y: 625
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    - data:
+        context:
+          enabled: true
+          variable_selector:
+          - conversation
+          - quiz
+        desc: ''
+        model:
+          completion_params: {}
+          mode: chat
+          name: gpt-4.1-nano
+          provider: langgenius/openai/openai
+        prompt_template:
+        - id: a0322c4e-e36b-43cd-b246-bd085ff31e1d
+          role: system
+          text: '与えられたコンテキストから問題１～１０のうちひとつをランダムで表示せよ。
+
+            ただし、解説は表示しない'
+        - id: 10b7461b-3421-4ee4-bc60-51d8d4ef0c1c
+          role: assistant
+          text: '###出力例
+
+            【問題】
+
+            ゴールドクラブメンバーに加入できるのは何人以上のスポンサーになった時ですか？
+
+
+            【回答】
+
+            a. ３人
+
+            b. ４人
+
+            c. ５人
+
+            d. ６人
+
+
+            ###重要
+
+            正解と解説は出力してはならない'
+        - role: user
+          text: '{{#context#}}'
+        selected: false
+        title: LLM 3
+        type: llm
+        variables: []
+        vision:
+          enabled: false
+      height: 89
+      id: '1739044545056'
+      position:
+        x: 2534.453259116217
+        y: 755
+      positionAbsolute:
+        x: 2534.453259116217
+        y: 755
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    - data:
+        dataset_ids:
+        - 36wzJZ3KefCJgzjpCxFGd1kbHaQ2x74VEKkTqHL2IvTCmB3z+drNMFazZm9TMD8T
+        - u0m0qu990FlmG5rimGoPlo2qT6ilfLT7/OfCmuvd52YES5myoSL4fZIKPeXEzlg8
+        - 6qYzjD7ICG6Jl1bky4OIXLZZHeQvB6+M//lBCJggA4GwGAsk0HA/8f1XsOOY1I/3
+        desc: ''
+        multiple_retrieval_config:
+          reranking_enable: true
+          reranking_mode: reranking_model
+          reranking_model:
+            model: rerank-multilingual-v3.0
+            provider: langgenius/cohere/cohere
+          top_k: 4
+        query_variable_selector:
+        - '1724505397538'
+        - sys.query
+        retrieval_mode: multiple
+        selected: false
+        title: 知識取得 3
+        type: knowledge-retrieval
+      height: 119
+      id: '1739044686598'
+      position:
+        x: 934
+        y: 755
+      positionAbsolute:
+        x: 934
+        y: 755
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    - data:
+        answer: '{{#1739044545056.text#}}'
+        desc: ''
+        selected: false
+        title: 回答 5
+        type: answer
+        variables: []
+      height: 104
+      id: '1739044751579'
+      position:
+        x: 2917.04645347472
+        y: 755
+      positionAbsolute:
+        x: 2917.04645347472
+        y: 755
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    - data:
+        cases:
+        - case_id: 'true'
+          conditions:
+          - comparison_operator: is
+            id: 79b19c41-7fde-46f4-bf73-161e1a2ac45d
+            value: はじめる
+            varType: string
+            variable_selector:
+            - sys
+            - query
+          id: 'true'
+          logical_operator: and
+        - case_id: bb274817-caf9-4dab-ad6b-53171aa7c7f2
+          conditions:
+          - comparison_operator: is
+            id: eccd0aa0-93f8-4e0a-979c-aa67b0ad5bf2
+            value: a
+            varType: string
+            variable_selector:
+            - sys
+            - query
+          - comparison_operator: is
+            id: 31f25366-b830-4d6c-ada8-b64e6104e0b2
+            value: b
+            varType: string
+            variable_selector:
+            - sys
+            - query
+          - comparison_operator: is
+            id: 23828845-683b-455c-8747-9642a63f7582
+            value: c
+            varType: string
+            variable_selector:
+            - sys
+            - query
+          - comparison_operator: is
+            id: 6f901deb-4dfc-4d0d-b1f5-91ea5e106620
+            value: d
+            varType: string
+            variable_selector:
+            - sys
+            - query
+          id: bb274817-caf9-4dab-ad6b-53171aa7c7f2
+          logical_operator: or
+        desc: ''
+        selected: false
+        title: IF/ELSE 2
+        type: if-else
+      height: 251
+      id: '1739046117016'
+      position:
+        x: 1372.0444464655282
+        y: 755
+      positionAbsolute:
+        x: 1372.0444464655282
+        y: 755
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    - data:
+        context:
+          enabled: true
+          variable_selector:
+          - conversation
+          - quiz
+        desc: ''
+        memory:
+          query_prompt_template: '{{#sys.query#}}'
+          role_prefix:
+            assistant: ''
+            user: ''
+          window:
+            enabled: true
+            size: 2
+        model:
+          completion_params: {}
+          mode: chat
+          name: gpt-4.1-nano
+          provider: langgenius/openai/openai
+        prompt_template:
+        - id: 565fb4be-86a3-4c1c-b00f-5d944d9da617
+          role: system
+          text: '{{#context#}}を元に、直前に発信したクイズに対してユーザーが入力した内容(a,b,c,d)が正解か不正解かを示す。
+
+            その後、解説を掲載する。'
+        - id: e51aee88-fb69-4551-bdc4-e400e01206e1
+          role: assistant
+          text: '正解 or 不正解
+
+
+            解説'
+        selected: false
+        title: LLM 4
+        type: llm
+        variables: []
+        vision:
+          enabled: false
+      height: 89
+      id: '1739046189407'
+      position:
+        x: 1818.7943985640177
+        y: 891
+      positionAbsolute:
+        x: 1818.7943985640177
+        y: 891
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    - data:
+        answer: '{{#1739046189407.text#}}'
+        desc: ''
+        selected: false
+        title: 回答 6
+        type: answer
+        variables: []
+      height: 104
+      id: '1739046279529'
+      position:
+        x: 2121.7943985640177
+        y: 891
+      positionAbsolute:
+        x: 2121.7943985640177
+        y: 891
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    - data:
+        context:
+          enabled: true
+          variable_selector:
+          - '1739044686598'
+          - result
+        desc: ''
+        model:
+          completion_params: {}
+          mode: chat
+          name: gemini-2.0-flash-001
+          provider: langgenius/gemini/google
+        prompt_template:
+        - id: 99532b5e-10f0-4d55-91a9-86c9d0f115db
+          role: system
+          text: '{{#context#}}から読みだした情報で、１０種類の問題とそれぞれa,b,c,dの回答と解説をクイズ形式で作成せよ。
+
+
+            ##重要
+
+            問題文に根拠文章のタイトルを表示せよ'
+        - id: 999ff0da-6a76-4668-af43-f43740661ab9
+          role: user
+          text: '問題
+
+
+            a:(aの回答)
+
+            b:(bの回答)
+
+            c:(cの回答)
+
+            d:(dの回答)
+
+
+            解説'
+        selected: false
+        title: LLM 5
+        type: llm
+        variables: []
+        vision:
+          enabled: false
+      height: 89
+      id: '1739046660735'
+      position:
+        x: 1818.7943985640177
+        y: 755
+      positionAbsolute:
+        x: 1818.7943985640177
+        y: 755
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    - data:
+        desc: ''
+        items:
+        - input_type: variable
+          operation: over-write
+          value:
+          - '1739046660735'
+          - text
+          variable_selector:
+          - conversation
+          - quiz
+          write_mode: over-write
+        selected: false
+        title: 変数代入
+        type: assigner
+        version: '2'
+      height: 87
+      id: '1739047125164'
+      position:
+        x: 2235.6969027780683
+        y: 755
+      positionAbsolute:
+        x: 2235.6969027780683
+        y: 755
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    - data:
+        dataset_ids:
+        - NzJiFyhHM/UxY6VC2LwUvfmPUqF8HTi+XH/N6q85f3PR6tJuPSLZ5TwsLtP9zI1H
+        desc: ''
+        multiple_retrieval_config:
+          reranking_enable: true
+          reranking_mode: reranking_model
+          reranking_model:
+            model: rerank-multilingual-v3.0
+            provider: langgenius/cohere/cohere
+          top_k: 4
+        query_variable_selector:
+        - '1724505397538'
+        - sys.query
+        retrieval_mode: multiple
+        selected: false
+        title: 知識取得 4
+        type: knowledge-retrieval
+      height: 91
+      id: '1739142332811'
+      position:
+        x: 820.1208591615972
+        y: 1063.9529356032044
+      positionAbsolute:
+        x: 820.1208591615972
+        y: 1063.9529356032044
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    - data:
+        cases:
+        - case_id: 'true'
+          conditions:
+          - comparison_operator: is
+            id: abdf648a-202a-4fa9-8256-19fa28be211a
+            value: はじめる
+            varType: string
+            variable_selector:
+            - sys
+            - query
+          id: 'true'
+          logical_operator: and
+        desc: ''
+        selected: false
+        title: IF/ELSE 3
+        type: if-else
+      height: 125
+      id: '1739142406296'
+      position:
+        x: 1123.1208591615973
+        y: 1063.9529356032044
+      positionAbsolute:
+        x: 1123.1208591615973
+        y: 1063.9529356032044
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    - data:
+        context:
+          enabled: true
+          variable_selector:
+          - '1739142332811'
+          - result
+        desc: ''
+        model:
+          completion_params: {}
+          mode: chat
+          name: gemini-2.0-flash-001
+          provider: langgenius/gemini/google
+        prompt_template:
+        - id: ba511e73-03eb-497a-82f2-e52269bc4321
+          role: system
+          text: 'あなたは、BNIメンバーの学習を支援するAI学習アドバイザーです。
+
+            提供されたRAG情報（以下、資料）を解析し、BNIメンバーが内容を深く理解し、実務に活かせるように、効果的な学習コンテンツを作成してください。
+
+            RAG情報は{{#context#}}
+
+
+            **目的:**
+
+            - BNIメンバーがRAG情報を正しく理解し、知識を定着させる。
+
+            - BNIメンバーが学んだ内容を実務に応用できるようになる。
+
+            - BNIメンバーの自律的な学習を促進する。
+
+
+            **情報源:**
+
+            - RAGによって検索された、質問に関連性の高いチャプターマニュアルや関連資料（以下、RAG情報）
+
+
+            **対象ユーザー:**
+
+            - チャプターマニュアルの内容を初めて学ぶ新入会BNIメンバー、および知識を再確認したい中堅BNIメンバー
+
+
+            **制約条件:**
+
+            - 専門用語は必ず平易な言葉で解説してください。
+
+            - 情報を簡潔にまとめ、箇条書きや図表を積極的に活用してください。
+
+            - 長文にならないように、1つのコンテンツは5分程度で理解できるようにしてください。
+
+            - 内容は正確で、誤解を招く表現は避けてください。
+
+
+            **出力形式:**
+
+            ##1. テキストでの出力
+
+            通常のテキスト形式で出力してください。構造化されたデータ形式（JSON、Markdownなど）は使用しないでください。
+
+
+            ## 2. RAG情報の要約
+
+
+            - RAG情報から重要なポイントを3～5つに絞り、箇条書きで提示
+
+            - 各ポイントについて、平易な言葉で解説
+
+
+            ## 3. 理解を深めるための具体例
+
+
+            - RAG情報の内容を具体的にイメージできるような例を提示
+
+            - 実務でどのように役立つかを示す
+
+
+            ## 4. 理解度チェック
+
+
+            - 学習内容に関する簡単な質問を提示（例: 〇〇とは何ですか？）
+
+            - 質問に対する回答のヒントを提示
+
+
+            ## 5. 関連情報 (発展学習)
+
+
+            - RAG情報に関連するBNIの資料や外部サイトへのリンクを提示
+
+            - さらに深く学びたい人のための情報源を提示
+
+
+            ## 6. まとめ
+
+
+            - 学習内容の要点を再確認
+
+            - 実務での活用を促すメッセージを提示
+
+
+            ## 7.参考文献
+
+            - RAG情報で参考にしたBNIドキュメント'
+        - id: 1b642df0-fed1-4df7-ba7b-230ed84b769e
+          role: user
+          text: RAGに追加された知識から勉強を{{#sys.query#}}
+        selected: false
+        title: LLM 6
+        type: llm
+        variables: []
+        vision:
+          enabled: false
+      height: 89
+      id: '1739142454365'
+      position:
+        x: 1436.5786139166075
+        y: 1053.4951808481942
+      positionAbsolute:
+        x: 1436.5786139166075
+        y: 1053.4951808481942
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    - data:
+        answer: '{{#1739142454365.text#}}'
+        desc: ''
+        selected: false
+        title: 回答 7
+        type: answer
+        variables: []
+      height: 104
+      id: '1739142720101'
+      position:
+        x: 1729.1208591615973
+        y: 1063.9529356032044
+      positionAbsolute:
+        x: 1729.1208591615973
+        y: 1063.9529356032044
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    - data:
+        answer: 「はじめる」をタップ
+        desc: ''
+        selected: false
+        title: 回答 8
+        type: answer
+        variables: []
+      height: 101
+      id: '1739142749096'
+      position:
+        x: 1426.1208591615973
+        y: 1199.9529356032044
+      positionAbsolute:
+        x: 1426.1208591615973
+        y: 1199.9529356032044
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    - data:
+        answer: 'こちらはＡＩが学習コーナーのネタを考えてくれるものです。
+
+          考えてほしいテーマを入力してください。
+
+
+          ※不具合により先ほど選んでいただいた選択が外れている可能性があります。
+
+          その場合は↑にある「チャット設定」の「編集」から再度"エデュケーション何でも教える君"を選択してください。'
+        desc: ''
+        selected: false
+        title: 回答 9
+        type: answer
+        variables: []
+      height: 197
+      id: '1744265784809'
+      position:
+        x: 820.1208591615972
+        y: 1193.9529356032044
+      positionAbsolute:
+        x: 820.1208591615972
+        y: 1193.9529356032044
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    - data:
+        context:
+          enabled: false
+          variable_selector: []
+        desc: ''
+        model:
+          completion_params: {}
+          mode: chat
+          name: gemini-2.0-flash-thinking-exp-1219
+          provider: langgenius/gemini/google
+        prompt_template:
+        - id: 5efb4971-0337-487d-9413-741cec71c6b5
+          role: system
+          text: "あなたはBNIチャプターの「学習コーナー（エデュケーション）」のために、週次の4分間プレゼンの構成を考えるAIアシスタントです。\
+            \  \nユーザーから与えられた「学習コーナーの大テーマ」に沿って、BNIの理念・ルール・カルチャー・実践知識を踏まえ、メンバーにとって価値のある内容を提案してください。\n\
+            \nBNIメンバーが実践につなげられるよう、学び・気づき・行動のヒントを含めた構成としてください。\n\n以下の<context></context>タグ内には、BNIに関するナレッジやルールが記載されています。\n\
+            \n<context>\n{{#context#}}\n</context>\n\n## 【入力】\nユーザーは「学習コーナーの大テーマ」を入力します（例：「Givers\
+            \ Gain」「信頼構築」「リファーラルの質」「1to1」「サンキュー額」など）。\n\n## 【出力フォーマット】\n入力されたテーマに基づいて、以下のフォーマットで出力してください：\n\
+            \n1. **タイトル**（キャッチーでイメージしやすい）\n2. **テーマ概要**（1〜2文でテーマの狙いを簡潔に）\n3. **学びのポイント（3つ）**（メンバーが得られる気づきやヒント）\n\
+            4. **導入トーク例（30秒以内）**（会話のように自然に始められる冒頭トーク）\n5. **スライド構成案（4〜5枚）**  \n　-\
+            \ スライド1：タイトル／アイスブレイク要素  \n　- スライド2〜4：学びの展開（問いかけ・事例・ポイント）  \n　- スライド5：まとめと行動提案\n\
+            \n## 【ルール】\n- プレゼン時間は4分間を想定\n- メンバーが自分ごととして捉えられる構成とすること\n- 理論だけでなく実践例や具体的な行動に落とし込めるようにすること\n\
+            - BNIの理念「Givers Gain（与える者は与えられる）」を根底に置くこと\n- 地域やチャプターによって異なる運用がある場合は注意喚起も含める\n\
+            \nあなたのゴールは、BNIメンバーが理念を深く理解し、明日から行動したくなるような学びの時間を提供できるよう支援することです。\n"
+        - id: a23b09e8-626f-43e8-a874-2beab71074df
+          role: user
+          text: '{{#sys.query#}}'
+        selected: false
+        title: LLM 7
+        type: llm
+        variables: []
+        vision:
+          enabled: false
+      height: 89
+      id: '1744266011933'
+      position:
+        x: 1120.1208591615973
+        y: 1363.9529356032044
+      positionAbsolute:
+        x: 1120.1208591615973
+        y: 1363.9529356032044
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    - data:
+        dataset_ids:
+        - 36wzJZ3KefCJgzjpCxFGd1kbHaQ2x74VEKkTqHL2IvTCmB3z+drNMFazZm9TMD8T
+        - avjatWNRf5WMyHCKJ0/JbCgcWwUUU/W6H9SFycoqjH8sbZgesglNOpJhKV5LAfmj
+        - u0m0qu990FlmG5rimGoPlo2qT6ilfLT7/OfCmuvd52YES5myoSL4fZIKPeXEzlg8
+        - 6qYzjD7ICG6Jl1bky4OIXLZZHeQvB6+M//lBCJggA4GwGAsk0HA/8f1XsOOY1I/3
+        desc: ''
+        multiple_retrieval_config:
+          reranking_enable: true
+          reranking_mode: reranking_model
+          reranking_model:
+            model: rerank-multilingual-v3.0
+            provider: langgenius/cohere/cohere
+          top_k: 4
+        query_variable_selector:
+        - '1724505397538'
+        - sys.query
+        retrieval_mode: multiple
+        selected: false
+        title: 知識取得 5
+        type: knowledge-retrieval
+      height: 147
+      id: '1744266029077'
+      position:
+        x: 820.1208591615972
+        y: 1363.9529356032044
+      positionAbsolute:
+        x: 820.1208591615972
+        y: 1363.9529356032044
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    - data:
+        answer: '{{#1744266011933.text#}}'
+        desc: ''
+        selected: false
+        title: 回答 10
+        type: answer
+        variables: []
+      height: 104
+      id: '1744266102534'
+      position:
+        x: 2347.574033461532
+        y: 1363.9529356032044
+      positionAbsolute:
+        x: 2347.574033461532
+        y: 1363.9529356032044
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    - data:
+        desc: ''
+        selected: false
+        template: done
+        title: テンプレート
+        type: template-transform
+        variables: []
+      height: 53
+      id: '1744266235346'
+      position:
+        x: 1469.5314558301075
+        y: 1363.9529356032044
+      positionAbsolute:
+        x: 1469.5314558301075
+        y: 1363.9529356032044
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    - data:
+        desc: ''
+        items:
+        - input_type: variable
+          operation: over-write
+          value:
+          - '1744266235346'
+          - output
+          variable_selector:
+          - conversation
+          - edu
+          write_mode: over-write
+        selected: false
+        title: 変数代入 2
+        type: assigner
+        version: '2'
+      height: 87
+      id: '1744266254875'
+      position:
+        x: 1892.2842959546194
+        y: 1363.9529356032044
+      positionAbsolute:
+        x: 1892.2842959546194
+        y: 1363.9529356032044
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    - data:
+        context:
+          enabled: false
+          variable_selector: []
+        desc: ''
+        memory:
+          query_prompt_template: '{{#sys.query#}}'
+          role_prefix:
+            assistant: ''
+            user: ''
+          window:
+            enabled: true
+            size: 50
+        model:
+          completion_params: {}
+          mode: chat
+          name: gemini-2.0-flash
+          provider: langgenius/gemini/google
+        prompt_template:
+        - id: 348c0753-9b4d-4ba9-8721-bf4774a1a812
+          role: system
+          text: "あなたは、BNIチャプターの「学習コーナー（エデュケーション）」で使用される4分間のスライド付きプレゼンの構成を修正・改善するAIアシスタントです。\
+            \  \nユーザーから提供された【既存のプレゼン案】をベースに、【ユーザーの修正・調整指示】に従って、構成の一部または全体を再提案してください。\n\
+            \n以下の<context></context>タグ内には、BNIに関するナレッジやルールが記載されています。必要に応じて参考にしてください。\n\
+            \n<context>\n{{#context#}}\n</context>\n\n## 【入力】\n- ユーザーは「既存のプレゼン構成」と「修正してほしい内容（例：もっと実例を入れてほしい、メンバーの反応を引き出す質問を増やして、時間配分を調整してほしいなど）」を入力します。\n\
+            \n## 【出力ルール】\n1. **ユーザーの意図を汲み取り、実用性の高い形で修正を加えること**\n2. **元の構成の良さや教育的目的を損なわないよう配慮すること**\n\
+            3. **BNIの理念「Givers Gain」やリファーラルマーケティングの考え方に反しないこと**\n4. **必要に応じて、修正理由やアレンジの意図も簡潔に説明すること**\n\
+            \n## 【出力形式（必要に応じて変更部分のみでも可）】\n- 修正後のタイトル（必要な場合）\n- 修正後のテーマ概要\n- 修正後の学びのポイント（3つ）\n\
+            - 修正後の導入トーク例\n- 修正後のスライド構成案（変更された部分が明確にわかるように）\n\nあなたの役割は、ユーザーの意図を正確にくみ取りながら、BNIメンバーにとって価値のあるエデュケーションコンテンツをブラッシュアップすることです。\n"
+        selected: false
+        title: LLM 8
+        type: llm
+        variables: []
+        vision:
+          enabled: false
+      height: 89
+      id: '1744266324493'
+      position:
+        x: 820.1208591615972
+        y: 1521.9529356032044
+      positionAbsolute:
+        x: 820.1208591615972
+        y: 1521.9529356032044
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    - data:
+        answer: '{{#1744266324493.text#}}
+
+
+          ----------
+
+          新しいテーマでエデュケーションを作成したい場合は新たなスレッドを立ち上げてください。'
+        desc: ''
+        selected: false
+        title: 回答 11
+        type: answer
+        variables: []
+      height: 136
+      id: '1744266437218'
+      position:
+        x: 1123.1208591615973
+        y: 1521.9529356032044
+      positionAbsolute:
+        x: 1123.1208591615973
+        y: 1521.9529356032044
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    - data:
+        cases:
+        - case_id: 'true'
+          conditions:
+          - comparison_operator: empty
+            id: f3e898f2-fb36-43bd-8501-6b1bdc27d79a
+            value: ''
+            varType: string
+            variable_selector:
+            - '1724505397538'
+            - select
+          id: 'true'
+          logical_operator: and
+        desc: ''
+        selected: false
+        title: IF/ELSE 4
+        type: if-else
+      height: 125
+      id: '1744592926447'
+      position:
+        x: 214.13877154770927
+        y: 299.0148154885095
+      positionAbsolute:
+        x: 214.13877154770927
+        y: 299.0148154885095
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    - data:
+        answer: '不具合により選択肢が外れてしまいました。
+
+          ↑にある「チャット設定」の「編集」より再度選択してください。'
+        desc: ''
+        selected: false
+        title: 回答 12
+        type: answer
+        variables: []
+      height: 133
+      id: '1744592938926'
+      position:
+        x: 416.52808208901706
+        y: 1053.4951808481942
+      positionAbsolute:
+        x: 416.52808208901706
+        y: 1053.4951808481942
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    viewport:
+      x: 421.942437231304
+      y: 317.8884599969431
+      zoom: 0.5172964584837322
